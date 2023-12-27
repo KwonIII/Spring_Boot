@@ -1,11 +1,15 @@
 package com.fastcampus.ch4;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Date;
 
 @SpringBootApplication
 public class Ch4Application implements CommandLineRunner {
@@ -20,6 +24,21 @@ EntityManagerFactory emf;
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("emf = " + emf);
+		EntityManager em = emf.createEntityManager();
+		System.out.println("em = " + em);
+		EntityTransaction tx = em.getTransaction();
+
+		User user = new User();
+		user.setId("aaaa");
+		user.setPassword("1234");
+		user.setName("Lee");
+		user.setEmail("aaa@aaa.com");
+		user.setInDate(new Date());
+		user.setUpDate(new Date());
+		em.persist(user);	//user엔티티를 em에 영속화(저장)
+
+		tx.begin();
+		em.persist(user);	//user엔티티를 em에 영속화(저장)
+		tx.commit();	//트랜잭션 종료(DB에 반영)
 	}
 }
