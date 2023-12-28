@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 public class User {
-    @Id
+    @Id //PK로 지정
     private String id;
     private String password;
     private String name;
