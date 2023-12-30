@@ -1,11 +1,25 @@
 package com.fastcampus.ch4;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface BoardRepository extends CrudRepository<Board, Long> {
+
+    @Query("SELECT b FROM Board b") //JPQL은 명칭을 대소문자 구분에 주의
+    List<Board> findAllBoard(); //메서드 이름은 아무거나 해도 괜찮다.
+
+    @Query("SELECT b FROM Board b WHERE b.title=?1 AND b.writer=?2")
+    List<Board> findByTitleAndWriter2(String title, String writer);
+
+    @Query(value="SELECT * FROM BOARD", nativeQuery = true) //SQL
+    List<Board> findAllBoardBySQL();
+
+    @Query(value="SELECT TITLE, WRITER FROM BOARD", nativeQuery = true) //SQL
+    List<Object[]> findAllBoardBySQL2();
+
     //SELECT COUNT(*) FROM BOARD WHERE WRITER = writer
     int countAllByWriter(String writer);
 
