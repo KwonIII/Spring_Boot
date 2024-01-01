@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static com.fastcampus.ch4.QBoard.board;
+
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BoardRepositoryTest4 {
@@ -40,7 +40,7 @@ class BoardRepositoryTest4 {
     @Test
     @DisplayName("querydsl로 쿼리작성 테스트1 - 간단한 쿼리 작성")
     public void queryAnnoTest1() {
-           QBoard board = QBoard.board;
+
     }
 
 }
