@@ -14,22 +14,20 @@ public class Board {
     private String writer;
     private String content;
 
+
+    private Long viewCnt;
+    @Temporal(value=TemporalType.TIMESTAMP)
+    private Date inDate;
+    @Temporal(value=TemporalType.TIMESTAMP)
+    private Date upDate;
+
+
+
     public Long getBno() {
         return bno;
     }
 
-    @Override
-    public String toString() {
-        return "Board{" +
-                "bno=" + bno +
-                ", title='" + title + '\'' +
-                ", writer='" + writer + '\'' +
-                ", content='" + content + '\'' +
-                ", viewCnt=" + viewCnt +
-                ", inDate=" + inDate +
-                ", upDate=" + upDate +
-                '}';
-    }
+
 
     public void setBno(Long bno) {
         this.bno = bno;
@@ -83,10 +81,6 @@ public class Board {
         this.upDate = upDate;
     }
 
-    private Long viewCnt;
-    @Temporal(value=TemporalType.TIMESTAMP)
-    private Date inDate;
-    @Temporal(value=TemporalType.TIMESTAMP)
-    private Date upDate;
+
 
 }
